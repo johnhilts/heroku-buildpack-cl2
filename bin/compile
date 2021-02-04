@@ -21,11 +21,11 @@ if [ $RESET_CACHE ]; then
   rm -rf $CACHE_DIR/*
 fi
 
-if [ ! -d "$CACHE_DIR/sbcl/sbcl-2.1.0-x86-64-linux" ]; then
+if [ ! -d "$CACHE_DIR/sbcl/sbcl-2.1.1-x86-64-linux" ]; then
     echo "-----> Fetching sbcl"    
-    SBCL_PACKAGE="http://prdownloads.sourceforge.net/sbcl/sbcl-2.1.1-source.tar.bz2?download"
+    SBCL_PACKAGE="https://jaist.dl.sourceforge.net/project/sbcl/sbcl/2.1.1/sbcl-2.1.1-source.tar.bz2"
     mkdir -p "$CACHE_DIR/sbcl" && curl $SBCL_PACKAGE -s -o -  | tar xjf - -C "$CACHE_DIR/sbcl"
-    chmod +x "$CACHE_DIR/sbcl/sbcl-2.1.0-x86-64-linux/run-sbcl.sh"
+    chmod +x "$CACHE_DIR/sbcl/sbcl-2.1.1-x86-64-linux/run-sbcl.sh"
 fi
 # add to slug 
 cp -r "$CACHE_DIR/sbcl" $BUILD_DIR
@@ -38,5 +38,5 @@ export CACHE_DIR
 export BUILD_DIR
 
 echo "-----> Starting build"
-$BUILD_DIR/sbcl/sbcl-2.1.0-x86-64-linux/run-sbcl.sh --load "$BUILDPACK_DIR/bin/compile.lisp" --eval "(sb-ext:quit)"
+$BUILD_DIR/sbcl/sbcl-2.1.1-x86-64-linux/run-sbcl.sh --load "$BUILDPACK_DIR/bin/compile.lisp" --eval "(sb-ext:quit)"
 echo "-----> Build finished"
