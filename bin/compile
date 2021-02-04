@@ -25,6 +25,7 @@ rm -rf $CACHE_DIR/*
 echo "-----> Fetching sbcl"    
 SBCL_PACKAGE="https://jaist.dl.sourceforge.net/project/sbcl/sbcl/2.1.1/sbcl-2.1.1-source.tar.bz2"
 mkdir -p "$CACHE_DIR/sbcl" && curl $SBCL_PACKAGE -s -o -  | tar xjf - -C "$CACHE_DIR/sbcl"
+chmod +x "$CACHE_DIR/sbcl/sbcl-2.1.1/*.sh"
 chmod +x "$CACHE_DIR/sbcl/sbcl-2.1.1/run-sbcl.sh"
 # fi
 # add to slug 
@@ -37,6 +38,9 @@ export BUILDPACK_DIR
 export CACHE_DIR
 export BUILD_DIR
 
+echo "-----> running make first:"
+$BUILD_DIR/sbcl/sbcl-2.1.1/make.sh
+echo "-----> make finished"
 echo "-----> Starting build"
 $BUILD_DIR/sbcl/sbcl-2.1.1/run-sbcl.sh --load "$BUILDPACK_DIR/bin/compile.lisp" --eval "(sb-ext:quit)"
 echo "-----> Build finished"
