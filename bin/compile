@@ -16,10 +16,10 @@ CACHE_DIR=$2
 
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR"
 
-if [ $RESET_CACHE ]; then
-  echo "-----> flushing cache"
-  rm -rf $CACHE_DIR/*
-fi
+# if [ $RESET_CACHE ]; then
+echo "-----> flushing cache"
+rm -rf $CACHE_DIR/*
+# fi
 
 # if [ ! -d "$CACHE_DIR/sbcl" ]; then
 echo "-----> Fetching sbcl"    
