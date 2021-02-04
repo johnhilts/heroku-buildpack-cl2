@@ -117,6 +117,7 @@ export CACHE_DIR
 export BUILD_DIR
 
 echo "-----> running make first:"
+cd $BUILD_DIR/sbcl/sbcl-2.1.1/
 $BUILD_DIR/sbcl/sbcl-2.1.1/make.sh
 echo "-----> make finished"
 echo "-----> Starting build"
